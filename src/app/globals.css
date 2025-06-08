@@ -4,3 +4,7 @@ body{
     overflow: hidden; /* Hide scrollbars */
     cursor: wait;
 }
+
+.gallery{
+    width: 70%;
+  }

@@ -11,11 +11,15 @@
     .sliderContainer{
       position: absolute;
       top: calc(100vh - 350px);
+      width: 100%;
+      overflow: hidden;
     }
     
     .slider{
       position: relative;
       white-space: nowrap;
+      display: inline-block;
+      width: max-content;
     }
     
     .slider p{
@@ -25,12 +29,15 @@
       font-size: 230px;
       font-weight: 500;
       padding-right: 50px;
+      display: inline-block;
+      min-width: max-content;
     }
     
     .slider p:nth-of-type(2){
       position: absolute;
       left: 100%;
       top: 0;
+      padding-left: 50px;
     }
   
     .description{
@@ -46,7 +53,7 @@
       }
       svg{
         transform: scale(2);
-        margin-bottom: 100px;
+        margin-bottom: 40px;
       }
     }
   }

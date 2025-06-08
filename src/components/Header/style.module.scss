@@ -11,6 +11,10 @@
     box-sizing: border-box;
     align-items: center;
     
+    @media (max-width: 768px) {
+        padding: 20px;
+    }
+    
     .logo{
         display: flex;
         cursor: pointer;
@@ -44,10 +48,10 @@
             }
             .name{
                 padding-right: 30px;
-                .codeBy{
+                .shotby{
                     transform: translateX(-100%);
                 }
-                .dennis{
+                .praise{
                     transform: translateX(-65px);
                 }
                 .snellenberg{
@@ -97,7 +101,7 @@
 
     .button{
         position: relative;
-        margin: 20px;
+        margin: 20px 40px;
         width: 80px;
         height: 80px;
         border-radius: 50%;

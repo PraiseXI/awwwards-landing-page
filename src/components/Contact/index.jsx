@@ -40,7 +40,7 @@ export default function index() {
                 </div>
                 <div className={styles.nav}>
                         <Rounded>
-                            <p>info@dennissnellenberg.com</p>
+                            <p>contact@shotbypraise.com</p>
                         </Rounded>
                         <Rounded>
                             <p>+31 6 27 84 74 30</p>
@@ -50,11 +50,7 @@ export default function index() {
                     <div>
                         <span>
                             <h3>Version</h3>
-                            <p>2022 © Edition</p>
-                        </span>
-                        <span>
-                            <h3>Version</h3>
-                            <p>11:49 PM GMT+2</p>
+                            <p>ShotbyPraise © 2025</p>
                         </span>
                     </div>
                     <div>
