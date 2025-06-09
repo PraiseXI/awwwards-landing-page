@@ -1,0 +1,90 @@
+.gallery{
+    height: 175vh;
+    background: rgb(45, 45, 45);
+    position: relative;
+    display: flex;
+    gap: 2vw;
+    padding: 2vw;
+    box-sizing: border-box;
+    overflow: hidden;
+    
+    .column{
+        position: relative;
+        height: 100%;
+        width: 25%;
+        min-width: 50px;
+        display: flex;
+        flex-direction: column;
+        gap: 2vw;
+        
+        .imageContainer{
+            height: 100%;
+            width: 100%;
+            position: relative;
+            border-radius: 1vw;
+            overflow: hidden;
+            
+            img{
+                object-fit: cover;
+            }
+        }
+        
+        // Desktop column positions
+        &.column1{
+            top: -45%;
+        }
+        &.column2{
+            top: -95%;
+        }
+        &.column3{
+            top: -45%;
+        }
+        &.column4{
+            top: -75%;
+        }
+    }
+    
+    // Mobile responsive styles
+    &.mobile {
+        .column {
+            width: 50%; // 2 columns on mobile
+            
+            // Adjusted mobile positions to reduce gaps
+            &.column1 {
+                top: -25%; // Less offset on mobile
+            }
+            &.column2 {
+                top: -45%; // Less offset on mobile
+            }
+        }
+    }
+    
+    // Media queries for additional mobile adjustments
+    @media (max-width: 768px) {
+        height: 150vh; // Slightly shorter on mobile
+        gap: 3vw; // Slightly larger gap for better spacing
+        padding: 3vw;
+        
+        .column {
+            gap: 3vw;
+            
+            .imageContainer {
+                border-radius: 2vw; // Slightly larger border radius on mobile
+            }
+        }
+    }
+    
+    @media (max-width: 480px) {
+        height: 120vh; // Even shorter on very small screens
+        gap: 4vw;
+        padding: 4vw;
+        
+        .column {
+            gap: 4vw;
+        }
+    }
+}
+
+.spacer{
+    height: 5vh;
+}

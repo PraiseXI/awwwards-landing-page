@@ -7,7 +7,8 @@ import Landing from "../components/Landing";
 import Description from "../components/Description";
 import SlidingImages from "../components/SlidingImages";
 import Contact from "../components/Contact";
-import Project from '../components/project';
+import Project from "../components/project";
+import Gallery from "@/components/gallery/page";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -59,17 +60,16 @@ export default function Home() {
         {isLoading && <Preloader />}
       </AnimatePresence>
       <Landing />
-      <Description />
+      <Gallery />
+      {/* <Description /> */}
       <div className={styles.gallery}>
         <p>Featured Work</p>
-          {
-            projects.map( (project, index) => {
-              return <Project key={index} project={project}/>
-            })
-          }
+        {projects.map((project, index) => {
+          return <Project key={index} project={project} />;
+        })}
       </div>
-      <SlidingImages />
-      <Contact />
+      {/* <SlidingImages />
+      <Contact /> */}
     </main>
   );
 }
