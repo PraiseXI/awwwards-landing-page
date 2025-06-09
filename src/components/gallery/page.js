@@ -33,23 +33,26 @@ export default function Gallery() {
   
   const { height } = dimension;
   
-  // Different transform values for mobile vs desktop
-  let y, y2, y3, y4;
+  // Calculate transforms without conditional hook calls
+  const y = useTransform(scrollYProgress, [0, 1], [
+    isMobile ? -height * 0.6 : 0,
+    isMobile ? height * 1.5 * 0.8 : height * 2
+  ]);
   
-  if (isMobile) {
-    // Mobile transforms with your optimized values
-    const mobileMultiplier = 0.8;
-    y = useTransform(scrollYProgress, [0, 1], [-height * 0.6, height * 1.5 * mobileMultiplier])
-    y2 = useTransform(scrollYProgress, [0, 1], [-height * 0.4, height * 2.0 * mobileMultiplier])
-    y3 = useTransform(scrollYProgress, [0, 1], [-height * 0.6, height * 1.0 * mobileMultiplier])
-    y4 = useTransform(scrollYProgress, [0, 1], [-height * 0.20, height * 1.8 * mobileMultiplier])
-  } else {
-    // Original desktop transforms
-    y = useTransform(scrollYProgress, [0, 1], [0, height * 2])
-    y2 = useTransform(scrollYProgress, [0, 1], [0, height * 3.3])
-    y3 = useTransform(scrollYProgress, [0, 1], [0, height * 1.25])
-    y4 = useTransform(scrollYProgress, [0, 1], [0, height * 3])
-  }
+  const y2 = useTransform(scrollYProgress, [0, 1], [
+    isMobile ? -height * 0.4 : 0,
+    isMobile ? height * 2.0 * 0.8 : height * 3.3
+  ]);
+  
+  const y3 = useTransform(scrollYProgress, [0, 1], [
+    isMobile ? -height * 0.6 : 0,
+    isMobile ? height * 1.0 * 0.8 : height * 1.25
+  ]);
+  
+  const y4 = useTransform(scrollYProgress, [0, 1], [
+    isMobile ? -height * 0.20 : 0,
+    isMobile ? height * 1.8 * 0.8 : height * 3
+  ]);
 
   useEffect( () => {
     const lenis = new Lenis({
