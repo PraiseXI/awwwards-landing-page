@@ -3,5 +3,16 @@
     width: 100%;
     justify-content: space-between;
     font-size: 12px;
-    gap: 40px;
+    gap: 20px;
+    flex-wrap: wrap;
+    
+    @media (max-width: 480px) {
+        font-size: 11px;
+        gap: 15px;
+        justify-content: flex-start;
+    }
+    
+    @media (min-width: 481px) {
+        gap: 40px;
+    }
 }

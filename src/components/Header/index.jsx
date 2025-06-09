@@ -39,7 +39,7 @@ export default function Index() {
                 <p className={styles.copyright}>©</p>
                 <div className={styles.name}>
                     <p className={styles.shotby}>ShotbyPraise</p>
-                    <p className={styles.snellenberg}>2025</p>
+                    <p className={styles.year}>2025</p>
                 </div>
             </div>
             <div className={styles.nav}>

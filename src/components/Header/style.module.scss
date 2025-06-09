@@ -13,11 +13,21 @@
     
     @media (max-width: 768px) {
         padding: 20px;
+        
+        // Hide desktop nav on mobile
+        .nav {
+            display: none;
+        }
     }
     
     .logo{
         display: flex;
         cursor: pointer;
+        
+        @media (max-width: 480px) {
+            font-size: 14px;
+        }
+        
         p{
             margin: 0px;
             transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
@@ -39,6 +49,10 @@
                     position: absolute;
                     left: 120px;
                     padding-left: 0.3em;
+                    
+                    @media (max-width: 480px) {
+                        left: 80px;
+                    }
                 }
             }
         }
@@ -54,7 +68,7 @@
                 .praise{
                     transform: translateX(-65px);
                 }
-                .snellenberg{
+                .year{
                     transform: translateX(-65px);
                 }
             }
@@ -71,6 +85,21 @@
             z-index: 1;
             padding: 15px;
             cursor: pointer;
+            font-size: 22px;
+            
+            @media (max-width: 1024px) {
+                padding: 10px;
+                font-size: 18px;
+            }
+            
+            @media (max-width: 768px) {
+                font-size: 16px;
+            }
+            
+            @media (max-width: 480px) {
+                font-size: 14px;
+            }
+            
             &:hover{
                 .indicator{
                     transform: scale(1);
@@ -93,6 +122,7 @@
         }
     } 
 }
+
 .headerButtonContainer{
     transform: scale(0);
     position: fixed;
@@ -110,6 +140,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        
+        @media (max-width: 480px) {
+            width: 60px;
+            height: 60px;
+            margin: 15px 20px;
+        }
     }
     
     .burger{
@@ -137,7 +173,6 @@
     }
     
     .burgerActive{
-    
         &::after{
             transform: rotate(45deg);
             top: -1px;
@@ -147,7 +182,5 @@
             transform: rotate(-45deg);
             top: 0px;
         }
-        
     }
 }
-

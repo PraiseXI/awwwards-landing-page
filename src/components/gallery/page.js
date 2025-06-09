@@ -52,7 +52,21 @@ export default function Gallery() {
   }
 
   useEffect( () => {
-    const lenis = new Lenis()
+    const lenis = new Lenis({
+      duration: 2.0,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Custom easing for smoother stop
+      smooth: true,
+      smoothTouch: false, // Disable smooth scrolling on touch devices to prevent conflicts
+    })
+
+    // Add a small delay to prevent jitter on scroll stop
+    let scrollTimeout;
+    const handleScroll = () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        // Optional: Add any cleanup here if needed
+      }, 100);
+    };
 
     const raf = (time) => {
       lenis.raf(time)
@@ -66,11 +80,16 @@ export default function Gallery() {
       setIsMobile(width <= 768); // Set mobile breakpoint
     }
 
+    // Listen for scroll events
+    lenis.on('scroll', handleScroll);
+    
     window.addEventListener("resize", resize)
     requestAnimationFrame(raf);
     resize();
 
     return () => {
+      clearTimeout(scrollTimeout);
+      lenis.destroy(); // Properly destroy Lenis instance
       window.removeEventListener("resize", resize);
     }
   }, [])
