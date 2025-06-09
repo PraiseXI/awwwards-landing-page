@@ -1,17 +1,19 @@
 .project{
     border-top: 2px solid black;
-    padding-top: 0.8vw;
-    padding-bottom: 0.8vw;
+    padding-top: 1.2vw;
+    padding-bottom: 0.9vw;
     cursor: pointer;
-    width: 100%;
+    width: 120%;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: -10%;
 }
   
 .project p{
     font-size: 5vw;
     margin: 0px;
+    color: white;
 }
 
 @media (max-width: 768px) {

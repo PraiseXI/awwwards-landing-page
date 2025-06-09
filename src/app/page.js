@@ -9,6 +9,7 @@ import SlidingImages from "../components/SlidingImages";
 import Contact from "../components/Contact";
 import Project from "../components/project";
 import Gallery from "@/components/gallery/page";
+import Lenis from "lenis";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,8 +36,8 @@ export default function Home() {
       src: "nothing_design_studio.png",
     },
     {
-      title1: "Mambo",
-      title2: "Mambo",
+      title1: "HUKD GOLF",
+      title2: "Out of Home",
       src: "mambo_mambo.jpeg",
     },
   ];
@@ -63,7 +64,7 @@ export default function Home() {
       <Gallery />
       {/* <Description /> */}
       <div className={styles.gallery}>
-        <p>Featured Work</p>
+        <p style={{ color: "white", fontSize: "2rem" }}>Featured Work</p>
         {projects.map((project, index) => {
           return <Project key={index} project={project} />;
         })}
