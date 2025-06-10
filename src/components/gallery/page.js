@@ -58,9 +58,11 @@ export default function Gallery() {
   useEffect( () => {
     const lenis = new Lenis({
       duration: 0.5,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Custom easing for smoother stop
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smooth: true,
-      smoothTouch: false, // Disable smooth scrolling on touch devices to prevent conflicts
+      smoothTouch: true, // Enable smooth scrolling on touch devices
+      touchMultiplier: 2, // Increase touch sensitivity
+      infinite: false, // Prevent infinite scrolling
     })
 
     // Add a small delay to prevent jitter on scroll stop
