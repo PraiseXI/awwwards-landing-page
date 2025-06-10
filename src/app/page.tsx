@@ -9,7 +9,7 @@ import SlidingImages from "../components/SlidingImages";
 import Contact from "../components/Contact";
 import Project from "../components/project";
 import Gallery from "../components/gallery/page";
-import Lenis from "lenis";
+import Lenis from "@studio-freight/lenis";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -43,16 +43,30 @@ export default function Home() {
   ];
 
   useEffect(() => {
-    (async () => {
-      const LocomotiveScroll = (await import("locomotive-scroll")).default;
-      const locomotiveScroll = new LocomotiveScroll();
+    const lenis = new Lenis({
+      duration: 0.5,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+    });
 
-      setTimeout(() => {
-        setIsLoading(false);
-        document.body.style.cursor = "default";
-        window.scrollTo(0, 0);
-      }, 600);
-    })();
+    const raf = (time) => {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
+
+    requestAnimationFrame(raf);
+
+    setTimeout(() => {
+      setIsLoading(false);
+      document.body.style.cursor = "default";
+      window.scrollTo(0, 0);
+    }, 600);
+
+    return () => {
+      lenis.destroy();
+    };
   }, []);
 
   return (

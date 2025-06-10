@@ -3,7 +3,6 @@ import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import styles from './page.module.scss'
 import Image from 'next/image';
-import Lenis from '@studio-freight/lenis'
 import { useTransform, useScroll, motion } from 'framer-motion';
 
 const images = [
@@ -55,30 +54,7 @@ export default function Gallery() {
     isMobile ? height * 1.8 * 0.8 : height * 3
   ]);
 
-  useEffect( () => {
-    const lenis = new Lenis({
-      duration: 0.5,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smooth: true,
-      smoothTouch: true, // Enable smooth scrolling on touch devices
-      touchMultiplier: 2, // Increase touch sensitivity
-      infinite: false, // Prevent infinite scrolling
-    })
-
-    // Add a small delay to prevent jitter on scroll stop
-    let scrollTimeout;
-    const handleScroll = () => {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        // Optional: Add any cleanup here if needed
-      }, 100);
-    };
-
-    const raf = (time) => {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
-
+  useEffect(() => {
     const resize = () => {
       const width = window.innerWidth;
       const height = window.innerHeight;
@@ -86,16 +62,10 @@ export default function Gallery() {
       setIsMobile(width <= 768); // Set mobile breakpoint
     }
 
-    // Listen for scroll events
-    lenis.on('scroll', handleScroll);
-    
     window.addEventListener("resize", resize)
-    requestAnimationFrame(raf);
     resize();
 
     return () => {
-      clearTimeout(scrollTimeout);
-      lenis.destroy(); // Properly destroy Lenis instance
       window.removeEventListener("resize", resize);
     }
   }, [])
@@ -121,41 +91,22 @@ export default function Gallery() {
   const transforms = isMobile ? [y, y2] : [y, y2, y3, y4];
 
   return (
-    <main className={styles.main}>
-      <div className={styles.spacer}></div>
-      <div ref={gallery} className={`${styles.gallery} ${isMobile ? styles.mobile : ''}`}>
-        {columnImages.map((images, index) => (
-          <Column 
-            key={index}
-            images={images} 
-            y={transforms[index]}
-            columnIndex={index}
-            isMobile={isMobile}
-          />
-        ))}
-      </div>
-      <div className={styles.spacer}></div>
-    </main>
-  )
-}
-
-const Column = ({images, y, columnIndex, isMobile}) => {
-  return (
-    <motion.div 
-      className={`${styles.column} ${styles[`column${columnIndex + 1}`]}`}
-      style={{y}}
-      >
-      {
-        images.map( (src, i) => {
-          return <div key={i} className={styles.imageContainer}>
-            <Image 
-              src={`/images/${src}`}
-              alt='image'
-              fill
-            />
+    <div ref={gallery} className={styles.gallery}>
+      <div className={styles.galleryWrapper}>
+        {columnImages.map((column, index) => {
+          return <div key={index} className={styles.column}>
+            {column.map((src, i) => {
+              return <div key={i} className={styles.imageContainer}>
+                <Image 
+                  src={`/images/${src}`}
+                  alt="image"
+                  fill={true}
+                />
+              </div>
+            })}
           </div>
-        })
-      }
-    </motion.div>
+        })}
+      </div>
+    </div>
   )
 }
