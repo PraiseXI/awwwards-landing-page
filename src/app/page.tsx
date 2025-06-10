@@ -8,7 +8,7 @@ import Description from "../components/Description";
 import SlidingImages from "../components/SlidingImages";
 import Contact from "../components/Contact";
 import Project from "../components/project";
-import Gallery from "../components/Gallery/page";
+import Gallery from "../components/Gallery/page.jsx";
 import Lenis from "lenis";
 
 export default function Home() {
