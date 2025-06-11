@@ -9,7 +9,7 @@ import SlidingImages from "../components/SlidingImages";
 import Contact from "../components/Contact";
 import Project from "../components/project";
 import Gallery from "../components/gallery/page";
-import Lenis from "@studio-freight/lenis";
+import Lenis from "lenis";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -49,6 +49,7 @@ export default function Home() {
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
+      syncTouch: false, // Disable smooth scrolling on touch devices for native mobile scrolling
     });
 
     const raf = (time) => {
