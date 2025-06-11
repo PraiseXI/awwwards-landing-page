@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <motion.main variants={slideUp} initial="initial" animate="enter" className={styles.landing}>
       <Image 
-        src="/images/DSCF0068-2.jpg"
+        src="/images/pexels-cottonbro-9955295.jpg"
         fill={true}
         alt="background"
       />
