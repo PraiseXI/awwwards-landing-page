@@ -212,3 +212,145 @@
     }
   }
 }
+
+// New styles for paginated cards
+.paginatedContainer {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.cardsGroup {
+  position: relative;
+  width: 100%;
+}
+
+.paginationControls {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  z-index: 1000;
+  
+  .pageInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    
+    .projectCount {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+  }
+  
+  .buttonGroup {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+  
+  .paginationButton {
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    
+    &:hover:not(:disabled) {
+      background: rgba(0, 0, 0, 0.9);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    }
+    
+    &:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+    }
+    
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+  
+  // Tablet responsive styles
+  @media (max-width: 1024px) {
+    bottom: 30px;
+    
+    .paginationButton {
+      padding: 10px 20px;
+      font-size: 13px;
+    }
+    
+    .pageInfo {
+      font-size: 13px;
+      
+      .projectCount {
+        font-size: 11px;
+      }
+    }
+  }
+  
+  // Mobile responsive styles
+  @media (max-width: 768px) {
+    bottom: 25px;
+    gap: 12px;
+    
+    .paginationButton {
+      padding: 8px 16px;
+      font-size: 12px;
+      border-radius: 20px;
+    }
+    
+    .pageInfo {
+      font-size: 12px;
+      
+      .projectCount {
+        font-size: 10px;
+      }
+    }
+    
+    .buttonGroup {
+      gap: 12px;
+    }
+  }
+  
+  // Small mobile responsive styles
+  @media (max-width: 480px) {
+    bottom: 20px;
+    gap: 10px;
+    
+    .paginationButton {
+      padding: 6px 12px;
+      font-size: 11px;
+      border-radius: 18px;
+    }
+    
+    .pageInfo {
+      font-size: 11px;
+      
+      .projectCount {
+        font-size: 9px;
+      }
+    }
+    
+    .buttonGroup {
+      gap: 10px;
+    }
+  }
+}

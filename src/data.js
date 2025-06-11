@@ -22,17 +22,65 @@ export const projects = [
   },
   {
     title: "Winter Chronicles",
-    description: "",
+    description: "A mesmerizing journey through frozen landscapes, capturing the serene beauty and harsh realities of winter's embrace across different continents.",
     src: "snow.jpg",
     link: "https://example.com/winter-chronicles",
     color: "#88A2AA"
   },
   {
     title: "Urban Rhythms",
-    description: "",
+    description: "Exploring the pulse of metropolitan life through candid street photography, revealing the hidden stories within bustling city environments.",
     src: "city.jpg",
     link: "https://example.com/urban-rhythms",
     color: "#6B5B73"
   },
-  
+  {
+    title: "Ocean Depths",
+    description: "An underwater odyssey showcasing the mysterious beauty of marine life and the delicate ecosystems beneath the waves.",
+    src: "water.jpg",
+    link: "https://example.com/ocean-depths",
+    color: "#4A90A4"
+  },
+  {
+    title: "Desert Solitude",
+    description: "Capturing the vast emptiness and surprising life found in some of the world's most remote desert landscapes.",
+    src: "rock.jpg",
+    link: "https://example.com/desert-solitude",
+    color: "#D4A574"
+  },
+  {
+    title: "Forest Whispers",
+    description: "An intimate look at ancient woodlands, revealing the intricate relationships between flora, fauna, and the changing seasons.",
+    src: "tree.jpg",
+    link: "https://example.com/forest-whispers",
+    color: "#7A8471"
+  },
+  {
+    title: "Mountain Peaks",
+    description: "Documenting the majesty and challenge of high-altitude environments, from sunrise alpenglow to treacherous weather conditions.",
+    src: "snow.jpg",
+    link: "https://example.com/mountain-peaks",
+    color: "#9B9B9B"
+  },
+  {
+    title: "Coastal Stories",
+    description: "Where land meets sea, exploring the dynamic relationship between human communities and the ever-changing coastline.",
+    src: "water.jpg",
+    link: "https://example.com/coastal-stories",
+    color: "#5D8AA8"
+  },
+  {
+    title: "Night Visions",
+    description: "After dark photography revealing the hidden world that emerges when the sun sets, from urban nightlife to nocturnal wildlife.",
+    src: "city.jpg",
+    link: "https://example.com/night-visions",
+    color: "#2F2F4F"
+  },
+  {
+    title: "Rural Heritage",
+    description: "Preserving the stories of traditional farming communities and their deep connection to the land across generations.",
+    src: "tree.jpg",
+    link: "https://example.com/rural-heritage",
+    color: "#8B7355"
+  }
 ]

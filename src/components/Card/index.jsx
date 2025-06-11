@@ -1,8 +1,8 @@
 'use client'
 import Image from 'next/image';
 import styles from './style.module.scss';
-import { useTransform, motion, useScroll } from 'framer-motion';
-import { useRef } from 'react';
+import { useTransform, motion, useScroll, AnimatePresence } from 'framer-motion';
+import { useRef, useState } from 'react';
 
 const Card = ({i, title, description, src, link, color, progress, range, targetScale, onCardClick}) => {
 
@@ -23,8 +23,6 @@ const Card = ({i, title, description, src, link, color, progress, range, targetS
     }
   };
 
-
- 
   return (
     <div 
       ref={container} 
@@ -36,7 +34,7 @@ const Card = ({i, title, description, src, link, color, progress, range, targetS
           backgroundColor: color, 
           scale, 
           top:`calc(-5vh + ${i * 85}px)`,
-          zIndex: 100 - i // Higher cards get higher z-index, but all are clickable
+          zIndex: 100 - i
         }} 
         className={styles.card}
         onClick={handleCardClick}
@@ -74,5 +72,119 @@ const Card = ({i, title, description, src, link, color, progress, range, targetS
     </div>
   )
 }
+
+// New Paginated Cards Container Component
+export const PaginatedCards = ({ projects, onCardClick }) => {
+  const [currentPage, setCurrentPage] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const cardsPerPage = 5;
+  const totalPages = Math.ceil(projects.length / cardsPerPage);
+  
+  const container = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: container
+  });
+
+  const getCurrentPageProjects = () => {
+    const startIndex = currentPage * cardsPerPage;
+    return projects.slice(startIndex, startIndex + cardsPerPage);
+  };
+
+  const handleLoadMore = async () => {
+    if (currentPage < totalPages - 1 && !isTransitioning) {
+      setIsTransitioning(true);
+      
+      // Small delay to ensure smooth transition
+      setTimeout(() => {
+        setCurrentPage(prev => prev + 1);
+        setIsTransitioning(false);
+      }, 300);
+    }
+  };
+
+  const handleLoadPrevious = async () => {
+    if (currentPage > 0 && !isTransitioning) {
+      setIsTransitioning(true);
+      
+      setTimeout(() => {
+        setCurrentPage(prev => prev - 1);
+        setIsTransitioning(false);
+      }, 300);
+    }
+  };
+
+  const currentProjects = getCurrentPageProjects();
+
+  return (
+    <div ref={container} className={styles.paginatedContainer}>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentPage}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -50 }}
+          transition={{ 
+            duration: 0.6,
+            ease: [0.25, 0.46, 0.45, 0.94]
+          }}
+          className={styles.cardsGroup}
+        >
+          {currentProjects.map((project, i) => {
+            const actualIndex = currentPage * cardsPerPage + i;
+            const targetScale = 1 - (i * 0.05);
+            const rangeStep = 1 / currentProjects.length;
+            
+            return (
+              <Card 
+                key={`p_${actualIndex}_${currentPage}`}
+                i={i} 
+                {...project} 
+                progress={scrollYProgress} 
+                range={[i * rangeStep, 1]} 
+                targetScale={targetScale}
+                onCardClick={onCardClick}
+              />
+            );
+          })}
+        </motion.div>
+      </AnimatePresence>
+      
+      <div className={styles.paginationControls}>
+        <div className={styles.pageInfo}>
+          <span>Page {currentPage + 1} of {totalPages}</span>
+          <span className={styles.projectCount}>
+            Showing {currentProjects.length} of {projects.length} projects
+          </span>
+        </div>
+        
+        <div className={styles.buttonGroup}>
+          {currentPage > 0 && (
+            <motion.button
+              className={styles.paginationButton}
+              onClick={handleLoadPrevious}
+              disabled={isTransitioning}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              ← Previous
+            </motion.button>
+          )}
+          
+          {currentPage < totalPages - 1 && (
+            <motion.button
+              className={styles.paginationButton}
+              onClick={handleLoadMore}
+              disabled={isTransitioning}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {isTransitioning ? 'Loading...' : 'Load More →'}
+            </motion.button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default Card
