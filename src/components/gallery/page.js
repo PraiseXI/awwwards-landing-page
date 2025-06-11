@@ -26,6 +26,34 @@ export default function Gallery() {
   const gallery = useRef(null);
   const [dimension, setDimension] = useState({width:0, height:0});
   const [isMobile, setIsMobile] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  // Preload images immediately when component mounts (synchronized with preloader)
+  useEffect(() => {
+    const preloadImages = async () => {
+      const imagePromises = images.map((src) => {
+        return new Promise((resolve, reject) => {
+          const img = new window.Image();
+          img.onload = resolve;
+          img.onerror = reject;
+          img.src = `/images/${src}`;
+        });
+      });
+
+      try {
+        await Promise.all(imagePromises);
+        // Add a small delay to sync with preloader animation timing
+        setTimeout(() => {
+          setImagesLoaded(true);
+        }, 200); // This matches the delay from anim.js opacity animation
+      } catch (error) {
+        console.error('Error preloading images:', error);
+        setImagesLoaded(true); // Still show images even if some fail to preload
+      }
+    };
+
+    preloadImages();
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: gallery,
@@ -102,6 +130,7 @@ export default function Gallery() {
             y={transforms[index]}
             columnIndex={index}
             isMobile={isMobile}
+            imagesLoaded={imagesLoaded}
           />
         ))}
       </div>
@@ -110,11 +139,20 @@ export default function Gallery() {
   )
 }
 
-const Column = ({images, y, columnIndex, isMobile}) => {
+const Column = ({images, y, columnIndex, isMobile, imagesLoaded}) => {
   return (
     <motion.div 
       className={`${styles.column} ${styles[`column${columnIndex + 1}`]}`}
       style={{y}}
+      initial={{ opacity: 0 }}
+      animate={{ 
+        opacity: imagesLoaded ? 1 : 0,
+        transition: { 
+          duration: 0.8, 
+          ease: [0.76, 0, 0.24, 1],
+          delay: 0.2 + (columnIndex * 0.1) // Stagger animation for each column
+        }
+      }}
       >
       {
         images.map( (src, i) => {
@@ -123,6 +161,7 @@ const Column = ({images, y, columnIndex, isMobile}) => {
               src={`/images/${src}`}
               alt='image'
               fill
+              priority={i < 3} // Prioritize first few images in each column
             />
           </div>
         })
