@@ -49,7 +49,9 @@ export default function Home() {
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      syncTouch: false, // Disable smooth scrolling on touch devices for native mobile scrolling
+      syncTouch: true, // Enable smooth scrolling on touch devices
+      syncTouchLerp: 0.075, // Smooth touch lerp for mobile
+      touchInertiaMultiplier: 35, // Touch inertia strength
     });
 
     const raf = (time) => {

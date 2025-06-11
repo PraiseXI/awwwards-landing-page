@@ -1,4 +1,5 @@
 import './globals.css'
+import 'lenis/dist/lenis.css'
 import { Inter } from 'next/font/google'
 import Header from '../components/Header';
 import { Analytics } from "@vercel/analytics/next"
