@@ -1,21 +1,37 @@
 "use client"
 
-import ThiingsGrid, { type ItemConfig } from "../../lib/ThiingsGrid";
-
-const SimpleNumberCell = ({ gridIndex }: ItemConfig) => (
-  <div className="absolute inset-1 flex items-center justify-center bg-blue-50 border border-blue-500 rounded text-sm font-bold text-blue-800">
-    {gridIndex}
-  </div>
-);
+import styles from './page.module.scss'
+import { projects } from '../../data';
+import Card from '../../components/Card';
+import { useScroll } from 'framer-motion';
+import { useRef, useEffect } from 'react';
+import Lenis from '@studio-freight/lenis'
 
 export default function WorkPage() {
+  const container = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: container
+  })
+
+  useEffect( () => {
+    const lenis = new Lenis()
+
+    function raf(time) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
+  })
+
   return (
-    <div className="w-screen h-screen relative">
-      <ThiingsGrid
-        gridSize={80}
-        renderItem={SimpleNumberCell}
-        initialPosition={{ x: 0, y: 0 }}
-      />
-    </div>
+    <main ref={container} className={styles.main}>
+      {
+        projects.map( (project, i) => {
+          const targetScale = 1 - ( (projects.length - i) * 0.05);
+          return <Card key={`p_${i}`} i={i} {...project} progress={scrollYProgress} range={[i * .25, 1]} targetScale={targetScale}/>
+        })
+      }
+    </main>
   );
 }
