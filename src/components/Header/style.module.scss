@@ -119,6 +119,17 @@
         }
         a{
             cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            
+            &:hover {
+                text-decoration: none;
+                color: inherit;
+            }
+            
+            &:visited {
+                color: inherit;
+            }
         }
     } 
 }

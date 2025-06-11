@@ -57,7 +57,7 @@ export default function Contact() {
                         <span>
                             <h3>socials</h3>
                             <Magnetic>
-                                <p>Awwwards</p>
+                                <p>Tiktok</p>
                             </Magnetic>
                         </span>
                         <Magnetic>

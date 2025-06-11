@@ -4,7 +4,20 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { opacity, slideUp } from './anim';
 
-const words = ["Hello", "Bonjour", "Ciao", "Olà", "やあ", "Hallå", "Guten tag", "Hallo"]
+const fontConfigs = [
+    { text: "SHOTBYPRAISE", fontFamily: "'Courier New', 'Courier', monospace", fontWeight: 400 },
+    { text: "SHOTBYPRAISE", fontFamily: "'Impact', 'Arial Black', sans-serif", fontWeight: 900 },
+    { text: "SHOTBYPRAISE", fontFamily: "'Comic Sans MS', 'Comic Sans', cursive", fontWeight: 700 },
+    { text: "SHOTBYPRAISE", fontFamily: "'Times New Roman', 'Times', serif", fontWeight: 300 },
+    { text: "SHOTBYPRAISE", fontFamily: "'Brush Script MT', cursive", fontWeight: 400 },
+    { text: "SHOTBYPRAISE", fontFamily: "'Papyrus', fantasy", fontWeight: 400 },
+    { text: "SHOTBYPRAISE", fontFamily: "'Chalkduster', fantasy", fontWeight: 400 },
+    { text: "SHOTBYPRAISE", fontFamily: "'American Typewriter', 'Courier New', monospace", fontWeight: 600 },
+    { text: "SHOTBYPRAISE", fontFamily: "'Optima', 'Segoe UI', sans-serif", fontWeight: 800 },
+    { text: "SHOTBYPRAISE", fontFamily: "'Luminari', fantasy", fontWeight: 400 },
+    { text: "SHOTBYPRAISE", fontFamily: "'Marker Felt', 'Comic Sans MS', cursive", fontWeight: 400 },
+    { text: "SHOTBYPRAISE", fontFamily: "'Copperplate', 'Copperplate Gothic Light', fantasy", fontWeight: 400 }
+]
 
 export default function Index() {
     const [index, setIndex] = useState(0);
@@ -15,7 +28,7 @@ export default function Index() {
     }, [])
 
     useEffect( () => {
-        if(index == words.length - 1) return;
+        if(index == fontConfigs.length - 1) return;
         setTimeout( () => {
             setIndex(index + 1)
         }, index == 0 ? 500 : 150)
@@ -35,11 +48,23 @@ export default function Index() {
         }
     }
 
+    const currentFont = fontConfigs[index];
+
     return (
         <motion.div variants={slideUp} initial="initial" exit="exit" className={styles.introduction}>
             {dimension.width > 0 && 
             <>
-                <motion.p variants={opacity} initial="initial" animate="enter"><span></span>{words[index]}</motion.p>
+                <motion.p 
+                    variants={opacity} 
+                    initial="initial" 
+                    animate="enter"
+                    style={{
+                        fontFamily: currentFont.fontFamily,
+                        fontWeight: currentFont.fontWeight
+                    }}
+                >
+                    <span></span>{currentFont.text}
+                </motion.p>
                 <svg>
                     <motion.path variants={curve} initial="initial" exit="exit"></motion.path>
                 </svg>

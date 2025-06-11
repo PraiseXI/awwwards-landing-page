@@ -16,7 +16,7 @@ export default function Index() {
     const button = useRef(null);
 
     useEffect( () => {
-      if(isActive) setIsActive(false)
+      setIsActive(false)
     }, [pathname])
 
     useLayoutEffect( () => {
@@ -45,7 +45,7 @@ export default function Index() {
             <div className={styles.nav}>
                 <Magnetic>
                     <div className={styles.el}>
-                        <a>Work</a>
+                        <a href="/work">Work</a>
                         <div className={styles.indicator}></div>
                     </div>
                 </Magnetic>
