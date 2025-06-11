@@ -54,7 +54,27 @@ export default function Gallery() {
     isMobile ? height * 1.8 * 0.8 : height * 3
   ]);
 
-  useEffect(() => {
+  useEffect( () => {
+    const lenis = new Lenis({
+      duration: 0.5,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Custom easing for smoother stop
+      smooth: true,
+      smoothTouch: false, // Disable smooth scrolling on touch devices to prevent conflicts
+    })
+
+    // Add a small delay to prevent jitter on scroll stop
+    let scrollTimeout;
+    const handleScroll = () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        // Optional: Add any cleanup here if needed
+      }, 100);
+    };
+
+    const raf = (time) => {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
     const resize = () => {
       const width = window.innerWidth;
       const height = window.innerHeight;
