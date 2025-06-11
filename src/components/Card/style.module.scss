@@ -6,6 +6,7 @@
   position: sticky;
   top: 0px;
   padding: 0 20px;
+  pointer-events: none; // Allow clicks to pass through the container
   
   // Mobile adjustments for browser UI
   @media (max-width: 768px) {
@@ -22,6 +23,20 @@
     border-radius: 25px;
     padding:50px;
     transform-origin: top;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0.1s ease;
+    pointer-events: auto;
+    user-select: none; // Prevent text selection on click
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      z-index: 1000 !important; // Ensure hovered card is always on top
+    }
+    
+    &:active {
+      z-index: 1001 !important; // Ensure clicked card is on top during click
+    }
     h2{
       text-align: center;
       margin: 0px;

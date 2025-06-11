@@ -22,14 +22,14 @@ export const projects = [
   },
   {
     title: "Winter Chronicles",
-    description: "Winter Chronicles is a photographic exploration of the quiet beauty found in the coldest months of the year. Through intimate portraits of snow-covered landscapes and the subtle interplay of light and shadow, this series captures the contemplative essence of winter's embrace.",
+    description: "",
     src: "snow.jpg",
     link: "https://example.com/winter-chronicles",
     color: "#88A2AA"
   },
   {
     title: "Urban Rhythms",
-    description: "Urban Rhythms delves into the pulsating energy of city life, capturing fleeting moments of human connection amidst the concrete jungle. This series explores the contrast between isolation and community in modern metropolitan environments.",
+    description: "",
     src: "city.jpg",
     link: "https://example.com/urban-rhythms",
     color: "#6B5B73"
