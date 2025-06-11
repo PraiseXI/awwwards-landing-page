@@ -29,7 +29,8 @@ export default function WorkPage() {
       {
         projects.map( (project, i) => {
           const targetScale = 1 - ( (projects.length - i) * 0.05);
-          return <Card key={`p_${i}`} i={i} {...project} progress={scrollYProgress} range={[i * .25, 1]} targetScale={targetScale}/>
+          const rangeStep = 1 / projects.length; // Dynamic range based on number of projects
+          return <Card key={`p_${i}`} i={i} {...project} progress={scrollYProgress} range={[i * rangeStep, 1]} targetScale={targetScale}/>
         })
       }
     </main>

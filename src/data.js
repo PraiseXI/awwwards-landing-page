@@ -33,5 +33,5 @@ export const projects = [
     src: "city.jpg",
     link: "https://example.com/urban-rhythms",
     color: "#6B5B73"
-  }
+  },
 ] 
