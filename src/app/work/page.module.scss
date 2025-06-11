@@ -1,3 +1,57 @@
 .main{
     margin-top: 0vh;
+    position: relative;
 } 
+
+.collapseButton {
+    position: fixed;
+    top: 20%;
+    right: 180px;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 12px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    
+    &:hover {
+        background: rgba(0, 0, 0, 0.6);
+        transform: translateY(-50%) translateY(-2px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    }
+    
+    &:active {
+        transform: translateY(-50%) translateY(0);
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+    }
+    
+    // Tablet responsive styles
+    @media (max-width: 1024px) {
+        right: 60px;
+        padding: 10px 15px;
+        font-size: 13px;
+    }
+    
+    // Mobile responsive styles
+    @media (max-width: 768px) {
+        right: 40px;
+        padding: 8px 12px;
+        font-size: 12px;
+        border-radius: 20px;
+    }
+    
+    // Small mobile responsive styles
+    @media (max-width: 480px) {
+        right: 25px;
+        padding: 6px 10px;
+        font-size: 11px;
+        border-radius: 18px;
+    }
+}

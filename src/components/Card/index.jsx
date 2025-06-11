@@ -22,6 +22,8 @@ const Card = ({i, title, description, src, link, color, progress, range, targetS
       onCardClick(i);
     }
   };
+
+
  
   return (
     <div 

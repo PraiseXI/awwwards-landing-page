@@ -53,6 +53,20 @@ export default function WorkPage() {
     }
   };
 
+  const handleCollapseClick = () => {
+    if (lenis) {
+      lenis.scrollTo(0, {
+        duration: 1.5,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+      });
+    } else {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <main ref={container} className={styles.main}>
       {
@@ -70,6 +84,15 @@ export default function WorkPage() {
           />
         })
       }
+      
+      <button 
+        className={styles.collapseButton}
+        onClick={handleCollapseClick}
+        aria-label="Collapse to top"
+        title="Go back to top"
+      >
+        ↑ Collapse
+      </button>
     </main>
   );
 }

@@ -37,6 +37,9 @@
     &:active {
       z-index: 1001 !important; // Ensure clicked card is on top during click
     }
+
+
+    
     h2{
       text-align: center;
       margin: 0px;
@@ -93,6 +96,8 @@
       height: 450px;
       padding: 40px;
       
+
+      
       h2 {
         font-size: 24px;
       }
@@ -118,6 +123,8 @@
         height: 450px;
         padding: 30px;
         top: -55%;
+        
+
       
       h2 {
         font-size: 22px;
@@ -169,6 +176,8 @@
         height: 400px;
         border-radius: 20px;
         top: -65%;
+        
+
       
       h2 {
         font-size: 20px;

@@ -34,4 +34,5 @@ export const projects = [
     link: "https://example.com/urban-rhythms",
     color: "#6B5B73"
   },
-] 
+  
+]
