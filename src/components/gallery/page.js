@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import styles from './page.module.scss'
 import Image from 'next/image';
 import { useTransform, useScroll, motion } from 'framer-motion';
+import Lenis from 'lenis';
 
 const images = [
   "Paradise-28.jpg",
