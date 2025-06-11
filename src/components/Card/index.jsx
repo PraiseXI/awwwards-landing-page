@@ -34,7 +34,7 @@ const Card = ({i, title, description, src, link, color, progress, range, targetS
           backgroundColor: color, 
           scale, 
           top:`calc(-5vh + ${i * 85}px)`,
-          zIndex: 100 - i
+          zIndex: 100 + i
         }} 
         className={styles.card}
         onClick={handleCardClick}
@@ -131,7 +131,7 @@ export const PaginatedCards = ({ projects, onCardClick }) => {
         >
           {currentProjects.map((project, i) => {
             const actualIndex = currentPage * cardsPerPage + i;
-            const targetScale = 1 - (i * 0.05);
+            const targetScale = 1 - ((currentProjects.length - 1 - i) * 0.05);
             const rangeStep = 1 / currentProjects.length;
             
             return (
