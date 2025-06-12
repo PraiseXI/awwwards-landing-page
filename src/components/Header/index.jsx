@@ -32,6 +32,10 @@ export default function Index() {
         })
     }, [])
 
+    const handleBackdropClick = () => {
+        setIsActive(false);
+    };
+
     return (
         <>
         <div ref={header} className={styles.header}>
@@ -69,7 +73,12 @@ export default function Index() {
             </Rounded>
         </div>
         <AnimatePresence mode="wait">
-            {isActive && <Nav />}
+            {isActive && (
+                <>
+                    <div className={styles.backdrop} onClick={handleBackdropClick} />
+                    <Nav />
+                </>
+            )}
         </AnimatePresence>
         </>
     )
