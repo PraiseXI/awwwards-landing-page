@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    top: -35%;
+    top: -55%;
     height: 500px;
     width: 1000px;
     border-radius: 25px;
@@ -122,7 +122,7 @@
         width: 95vw;
         height: 450px;
         padding: 30px;
-        top: -55%;
+        top: -75%;
         
 
       
@@ -175,7 +175,7 @@
         padding: 20px;
         height: 400px;
         border-radius: 20px;
-        top: -65%;
+        top: -85%;
         
 
       
@@ -227,14 +227,20 @@
 
 .paginationControls {
   position: fixed;
-  bottom: 40px;
+  bottom: 80px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  z-index: 1000;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 20px 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   
   .pageInfo {
     display: flex;
@@ -290,7 +296,8 @@
   
   // Tablet responsive styles
   @media (max-width: 1024px) {
-    bottom: 30px;
+    bottom: 60px;
+    padding: 18px 25px;
     
     .paginationButton {
       padding: 10px 20px;
@@ -308,8 +315,10 @@
   
   // Mobile responsive styles
   @media (max-width: 768px) {
-    bottom: 25px;
+    bottom: 50px;
     gap: 12px;
+    padding: 15px 20px;
+    border-radius: 18px;
     
     .paginationButton {
       padding: 8px 16px;
@@ -332,8 +341,10 @@
   
   // Small mobile responsive styles
   @media (max-width: 480px) {
-    bottom: 20px;
+    bottom: 40px;
     gap: 10px;
+    padding: 12px 16px;
+    border-radius: 16px;
     
     .paginationButton {
       padding: 6px 12px;
